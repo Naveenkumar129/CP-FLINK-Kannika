@@ -1,3 +1,20 @@
+kubectl get cmfrestclass -n cpf
+kubectl describe cmfrestclass default -n cpf
+
+cmfRestClassRef:
+  name: custom-metrics
+  namespace: cpf
+
+apiVersion: platform.confluent.io/v1beta1
+kind: CMFRestClass
+metadata:
+  name: default
+  namespace: cpf
+spec:
+  metricsEndpoint: "http://metrics-service:8080"
+  # other metrics configuration
+
+
 Notes:
 
 1. **Helm is like a package manager for Kubernetes.** Think of it like `npm` for Node.js or `pip` for Python, but for Kubernetes applications. Instead of writing lots of YAML files by hand, you install pre-made packages called "charts."
