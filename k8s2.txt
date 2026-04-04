@@ -2,3 +2,8 @@ spec.secretName This indicates which Secret the certificate will ultimately be s
 spec.issuerRef.kindA value of `ClusterIssuer` indicates that the issuing authority is not in this namespace, but globally.
 spec.issuerRef.nameThe name of the issuing authority we created (`ClusterIssuer.metadata.name`)
 spec.dnsNamesindicates which domains this certificate can be used for, consistent with domain name resolution.
+
+kubectl get certificate -n mldong-test
+kubectl get certificate -n prod
+kubectl describe certificate 
+kubectl get secret te
