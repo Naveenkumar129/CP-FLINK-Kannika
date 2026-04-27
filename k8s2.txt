@@ -1,3 +1,40 @@
+# Backup & restore
+kafka-backup backup --config backup.yaml
+kafka-backup restore --config restore.yaml
+kafka-backup three-phase-restore --config restore.yaml   # restore + offset recovery
+
+# Inspect backups
+kafka-backup list --path s3://bucket/prefix
+kafka-backup describe --path s3://bucket --backup-id backup-001 --format json
+kafka-backup status --config backup.yaml --watch          # live monitoring
+kafka-backup validate --path s3://bucket --backup-id backup-001 --deep
+
+# Restore validation (dry-run)
+kafka-backup validate-restore --config restore.yaml
+
+# Offset mapping & consumer offset management
+kafka-backup show-offset-mapping --path s3://bucket --backup-id backup-001 --format json
+kafka-backup offset-reset plan --path s3://bucket --backup-id backup-001 --groups my-group
+kafka-backup offset-reset execute --path s3://bucket --backup-id backup-001 --groups my-group
+kafka-backup offset-reset script --path s3://bucket --backup-id backup-001 --groups my-group
+
+# Bulk parallel offset reset (~50x faster)
+kafka-backup offset-reset-bulk --path s3://bucket --backup-id backup-001 \
+  --groups group1,group2 --bootstrap-servers kafka:9092
+
+# Offset snapshots & rollback (safety net)
+kafka-backup offset-rollback snapshot --path s3://bucket --groups my-group --bootstrap-servers kafka:9092
+kafka-backup offset-rollback list --path s3://bucket
+kafka-backup offset-rollback rollback --path s3://bucket --snapshot-id <id> --bootstrap-servers kafka:9092
+
+# Validation & compliance evidence
+kafka-backup validation run --config validation.yaml
+kafka-backup validation run --config validation.yaml --triggered-by "KPMG Q1 audit"
+kafka-backup validation evidence-list --path s3://bucket
+kafka-backup validation evidence-get --path s3://bucket --report-id <id> --format pdf --output report.pdf
+kafka-backup validation evidence-verify --report report.json --signature report.sig --public-key key.pem
+----
+
 spec.secretName This indicates which Secret the certificate will ultimately be stored in.
 spec.issuerRef.kindA value of `ClusterIssuer` indicates that the issuing authority is not in this namespace, but globally.
 spec.issuerRef.nameThe name of the issuing authority we created (`ClusterIssuer.metadata.name`)
