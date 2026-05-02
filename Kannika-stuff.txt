@@ -1,6 +1,3 @@
-
-TO: forgerock-support@company.com OR forgerock-team@company.com
-CC: platform-engineering@company.com
 SUBJECT: OAuth2 Client Registration Request - Kannika Armory SSO Integration
 
 Hi ForgeRock Team,
