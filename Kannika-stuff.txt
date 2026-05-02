@@ -1,3 +1,55 @@
+
+TO: forgerock-support@company.com OR forgerock-team@company.com
+CC: platform-engineering@company.com
+SUBJECT: OAuth2 Client Registration Request - Kannika Armory SSO Integration
+
+Hi ForgeRock Team,
+
+We need to register our new Kannika Armory application for SSO authentication 
+with ForgeRock.
+
+=== APPLICATION DETAILS ===
+Application Name: Kannika Armory
+Description: Kubernetes-based container deployment platform
+Application Type: Confidential Client (Web Application)
+Environment: Production Kubernetes Cluster (us-east-1)
+
+=== REDIRECT URIS (MUST MATCH EXACTLY) ===
+https://kannika.example.com/auth/callback
+https://kannika.example.com/oauth2/callback
+https://api.kannika.example.com/auth/callback
+
+Post-Logout Redirect:
+https://kannika.example.com/logout
+
+=== REQUESTED INFORMATION ===
+Please provide the following credentials and endpoints:
+
+1. Client ID (public identifier)
+2. Client Secret (keep confidential)
+3. Base ForgeRock URL / endpoint
+4. Authorization Endpoint URL
+5. Token Endpoint URL
+6. User Info Endpoint URL
+7. JWKS URI (public keys)
+8. OpenID Connect Discovery URL (.well-known/openid-configuration)
+9. Logout/End Session Endpoint (if available)
+
+=== REQUIRED SCOPES ===
+Please enable the following OAuth2 scopes:
+  - openid (required)
+  - profile
+  - email
+  - groups (if available)
+
+=== GRANT TYPES ===
+Please enable:
+  - Authorization Code Grant (required for user login)
+  - Refresh Token Grant (optional - for persistent sessions)
+------------
+
+
+
 # Backup & restore
 kafka-backup backup --config backup.yaml
 kafka-backup restore --config restore.yaml
